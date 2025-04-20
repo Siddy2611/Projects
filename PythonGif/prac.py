@@ -1,17 +1,29 @@
-import openai
+import imageio.v3 as iio
+import os
 
-openai.api_key = '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' # Fill in your own key
+filenames = ['pic1.png', 'pic2.png', 'pic3.png', 'pic4.png', 'pic5.png', 'pic6.png']
+images = []
 
-def generate_blog(paragraph_topic):
-  response = openai.completions.create(
-    model = 'gpt-3.5-turbo-instruct',
-    prompt = 'Write a paragraph about the following topic. ' + paragraph_topic,
-    max_tokens = 400,
-    temperature = 0.3
-  )
+# Check if files exist
+for filename in filenames:
+    if not os.path.exists(filename):
+        raise FileNotFoundError(f"Input file not found: {filename}")
 
-  retrieve_blog = response.choices[0].text
+# Read images
+try:
+    images = [iio.imread(filename) for filename in filenames]
+except Exception as e:
+    raise RuntimeError(f"Failed to read images: {e}")
 
-  return retrieve_blog
+# Verify image shapes
+shapes = [img.shape for img in images]
+if len(set(shapes)) != 1:
+    raise ValueError("All images must have the same dimensions and channels")
 
-print(generate_blog('Why NYC is better than your city.'))
+# Write GIF
+try:
+    iio.imwrite('proj.gif', images, duration=500, loop=0)
+except Exception as e:
+    raise RuntimeError(f"Failed to write GIF: {e}")
+
+print("GIF created successfully!")
