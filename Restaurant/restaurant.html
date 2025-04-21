@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sid's Cafe</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+                overflow-x: hidden;
+                background-color: #f8f4e5;
+                color: #444;
+            }
+            header {
+                text-align: center;
+                background-color: #003049;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 30px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            #image {
+                border: 2px solid #eae2b7;
+                border-radius: 50%;
+                width: 70px;
+                height: 70px;
+                object-fit: cover;
+            }
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .logo h1 {
+                color: #fff;
+                font-weight: 700;
+                margin: 0;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            }
+            .nav {
+                gap: 30px;
+                display: flex;
+            }
+            .nav a {
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+                padding: 8px 15px;
+                border-radius: 5px;
+                transition: all 0.3s;
+                border: 2px solid transparent;
+            }
+            .nav a:hover {
+                background-color: #65fac3;
+                color: #003049;
+                border-color: #eae2b7;
+            }
+            #menu {
+                padding: 40px 20px;
+            }
+            .menu-items {
+                display: flex;
+                justify-content: center;
+                align-items: stretch;
+                flex-wrap: wrap;
+                gap: 30px;
+                margin-top: 30px;
+            }
+            .food-item {
+                border: none;
+                border-radius: 12px;
+                width: 300px;
+                padding: 0;
+                background-color: #fff;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+                transition: transform 0.3s;
+                overflow: hidden;
+            }
+            .food-item:hover {
+                transform: translateY(-10px);
+            }
+            .food-item img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+            .food-content {
+                padding: 20px;
+            }
+            .food-item h3 {
+                color:#003049;
+                margin-top: 0;
+                font-size: 22px;
+            }
+            .food-item p {
+                color: #666;
+                line-height: 1.6;
+            }
+            .price {
+                font-weight: bold;
+                color: #003049;
+                font-size: 18px;
+                display: block;
+                margin-top: 10px;
+            }
+            h2 {
+                text-align: center;
+                color: #003049;
+                margin-top: 40px;
+                font-size: 32px;
+                font-weight: 700;
+            }
+            h2:after {
+                content: '';
+                display: block;
+                width: 80px;
+                height: 4px;
+                background-color: cadetblue;
+                margin: 15px auto;
+                border-radius: 2px;
+            }
+            #order-form {
+                border-radius: 12px;
+                margin: 50px auto;
+                max-width: 550px;
+                padding: 40px;
+                background-color: #fff;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            }
+            .form-group {
+                margin-bottom: 25px;
+            }
+            .form-group label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: 600;
+                color: #003049;
+            }
+            select, input, textarea {
+                width: 100%;
+                padding: 12px;
+                border: 2px solid #eee;
+                border-radius: 8px;
+                font-family: inherit;
+                font-size: 16px;
+                transition: border-color 0.3s;
+            }
+            select:focus, input:focus, textarea:focus {
+                outline: none;
+                border-color: #fcbf49;
+            }
+            .quantity-control {
+                display: flex;
+                align-items: center;
+                margin-top: 15px;
+            }
+            .quantity-control label {
+                margin-bottom: 0;
+                margin-right: 15px;
+                width: auto;
+            }
+            .quantity-control input {
+                width: 80px;
+                text-align: center;
+            }
+            .checkbox-group, .radio-group {
+                margin-top: 10px;
+            }
+            .checkbox-item, .radio-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+            .checkbox-item input, .radio-item input {
+                width: auto;
+                margin-right: 12px;
+            }
+            textarea {
+                resize: vertical;
+                min-height: 100px;
+            }
+            input[type="submit"] {
+                background-color: #003049;
+                color: white;
+                border: none;
+                padding: 15px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 18px;
+                transition: background-color 0.3s;
+                width: 100%;
+                margin-top: 15px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            input[type="submit"]:hover {
+                background-color: #65affa;
+            }
+            footer {
+                background-color: #003049;
+                text-align: center;
+                padding: 30px;
+                margin-top: 70px;
+                color: white;
+            }
+            footer p {
+                margin: 0;
+                font-size: 16px;
+            }
+            .item-selection {
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="logo">
+                <img id="image" src="https://similarpng.com/_next/image?url=https%3A%2F%2Fimage.similarpng.com%2Ffile%2Fsimilarpng%2Fvery-thumbnail%2F2021%2F09%2FGood-food-logo-design-on-transparent-background-PNG.png&w=3840&q=75" alt="Cafe Logo">
+                <h1>Sid's Cafe</h1>
+            </div>
+            <nav class="nav">
+                <a href="#menu">Menu</a>
+                <a href="#order-form">Order</a>
+            </nav>
+        </header>
+        <main>
+            <section id="menu">
+                <h2>Our Menu</h2>
+                <div class="menu-items">
+                    <article class="food-item">
+                        <img src="https://static.vecteezy.com/system/resources/previews/038/140/993/non_2x/ai-generated-appetizing-burger-on-a-white-isolated-background-photo.jpg" alt="Burger">
+                        <div class="food-content">
+                            <h3>Burger</h3>
+                            <p>Juicy beef patty in a freshly baked bun with melted American cheese, crisp lettuce, ripe tomatoes, and our special sauce.</p>
+                            <span class="price">$8.99</span>
+                        </div>
+                    </article>
+                    <article class="food-item">
+                        <img src="https://static.vecteezy.com/system/resources/previews/030/660/317/large_2x/pizza-with-white-background-high-quality-ultra-hd-free-photo.jpg" alt="Pizza">
+                        <div class="food-content">
+                            <h3>Pizza</h3>
+                            <p>Our signature hand-tossed pizza with homemade tomato sauce, mozzarella cheese, and generous pepperoni toppings.</p>
+                            <span class="price">$12.50</span>
+                        </div>
+                    </article>
+                    <article class="food-item">
+                        <img src="https://png.pngtree.com/png-clipart/20231003/original/pngtree-spaghetti-bolognese-spaghetti-food-catering-fast-food-decorative-pattern-clip-art-png-image_13249321.png" alt="Pasta">
+                        <div class="food-content">
+                            <h3>Pasta</h3>
+                            <p>Al dente spaghetti tossed in a creamy sauce with fresh herbs and parmesan. A classic Italian favorite.</p>
+                            <span class="price">$10.75</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <section id="order-form">
+                <h2>Place your Order</h2>
+                <form>
+                    <div class="form-group item-selection">
+                        <label for="food-select">Select your item:</label>
+                        <select id="food-select" name="food-item" required>
+                            <option value="" disabled selected>Choose an item</option>
+                            <option value="burger">Burger - $8.99</option>
+                            <option value="pizza">Pizza - $12.50</option>
+                            <option value="pasta">Pasta - $10.75</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="quantity-control">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sides:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="side-salad" name="sides">
+                                <label for="side-salad">Garden Salad</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="side-fries" name="sides">
+                                <label for="side-fries">French Fries</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="side-coke" name="sides">
+                                <label for="side-coke">Soft Drink</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sauces:</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="sauce-white" name="sauce">
+                                <label for="sauce-white">White Sauce</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="sauce-pink" name="sauce">
+                                <label for="sauce-pink">Pink Sauce</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="sauce-red" name="sauce">
+                                <label for="sauce-red">Red Sauce</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">Special Instructions:</label>
+                        <textarea id="comments" name="comments" rows="4" placeholder="Any special requests or dietary requirements?"></textarea>
+                    </div>
+                    
+                    <input type="submit" value="Go To Checkout">
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>Made with love by Sid2611</p>
+        </footer>
+    </body>
+</html>
